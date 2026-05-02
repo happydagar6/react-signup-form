@@ -1,33 +1,16 @@
-/* Reset basic styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.app-container {
+/* General Layout */
+.form-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f3f4f6;
-  padding: 20px;
+  margin-top: 80px;
+  font-family: Arial, sans-serif;
 }
 
-.form-card {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.signup-form {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 400px;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 24px;
-  color: #1f2937;
 }
 
 .form-group {
@@ -35,63 +18,53 @@ h2 {
 }
 
 label {
+  font-weight: bold;
   display: block;
-  margin-bottom: 6px;
-  font-weight: 500;
-  color: #4b5563;
+  margin-bottom: 5px;
 }
 
-.form-input {
+/* Input Styling */
+input {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
   outline: none;
-  transition: border-color 0.2s ease;
+  font-size: 16px;
+  border: 2px solid; /* Base border width */
+  box-sizing: border-box;
 }
 
-.form-input:focus {
-  border-color: #3b82f6;
+/* Part 3: Error handling border colors */
+input.invalid {
+  border-color: red;
 }
 
-/* Evaluation Criteria Part 3: Red on invalid, Green on valid */
-.input-valid {
-  border: 2px solid #10b981 !important; /* Green */
+input.valid {
+  border-color: green;
 }
 
-.input-invalid {
-  border: 2px solid #ef4444 !important; /* Red */
-}
-
-/* Error Message Styling */
+/* Error Text Styling */
 .error-text {
-  color: #ef4444;
+  color: red;
   font-size: 13px;
-  margin-top: 6px;
+  margin-top: 5px;
+  margin-bottom: 0;
 }
 
+/* Submit Button */
 .submit-btn {
-  width: 100%;
-  padding: 12px;
-  background-color: #3b82f6;
+  background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  font-size: 16px;
+  width: 120px;
+  align-self: center; /* Centers the button horizontally */
   margin-top: 10px;
 }
 
 .submit-btn:hover {
-  background-color: #2563eb;
-}
-
-/* Make it responsive */
-@media (max-width: 480px) {
-  .form-card {
-    padding: 20px;
-  }
+  background-color: #0056b3;
 }
