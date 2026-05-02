@@ -7,6 +7,13 @@ function App() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  // Track which fields have been touched by the user
+  const [touched, setTouched] = useState({
+    email: false,
+    password: false,
+    confirmPassword: false
+  });
+
   // Part 2: Form Functionalities (Validation Variables)
   // Check if email format is valid using Regex
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -16,6 +23,11 @@ function App() {
   
   // Check if confirm password matches and is not empty
   const isConfirmPasswordValid = confirmPassword === password && confirmPassword.length > 0;
+
+  // Handle blur event to mark field as touched
+  const handleBlur = (field) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+  };
 
   // Part 4: Submit Action
   const handleSubmit = (e) => {
@@ -39,10 +51,11 @@ function App() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onBlur={() => handleBlur('email')}
             // Part 3: Visual Feedback (red/green borders)
-            className={isEmailValid ? 'valid' : 'invalid'}
+            className={touched.email ? (isEmailValid ? 'valid' : 'invalid') : ''}
           />
-          {!isEmailValid && <p className="error-text">Invalid email format</p>}
+          {touched.email && !isEmailValid && <p className="error-text">Invalid email format</p>}
         </div>
 
         {/* Password Field */}
@@ -52,9 +65,10 @@ function App() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className={isPasswordValid ? 'valid' : 'invalid'}
+            onBlur={() => handleBlur('password')}
+            className={touched.password ? (isPasswordValid ? 'valid' : 'invalid') : ''}
           />
-          {!isPasswordValid && <p className="error-text">Password must be at least 8 characters</p>}
+          {touched.password && !isPasswordValid && <p className="error-text">Password must be at least 8 characters</p>}
         </div>
 
         {/* Confirm Password Field */}
@@ -64,9 +78,10 @@ function App() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className={isConfirmPasswordValid ? 'valid' : 'invalid'}
+            onBlur={() => handleBlur('confirmPassword')}
+            className={touched.confirmPassword ? (isConfirmPasswordValid ? 'valid' : 'invalid') : ''}
           />
-          {!isConfirmPasswordValid && <p className="error-text">Passwords do not match</p>}
+          {touched.confirmPassword && !isConfirmPasswordValid && <p className="error-text">Passwords do not match</p>}
         </div>
 
         <button type="submit" className="submit-btn">Sign Up</button>
